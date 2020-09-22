@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  description: |
+    API specification
+
+    The API can do whatever you want it to.
+
+  version: 0.0.1
+  title: Location API (0.0.1)
+
+servers:
+    - url: http://localhost:3000/
+      description: DEV environment
+
+paths:
+  /v1/api/places/latitude/14.123/longitude/12.123:
+    get:
+      description: |
+        Get location
+      summary: Get location
+      parameters:
+        - $ref: '#/components/parameters/CorrelationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        "400":
+          description: Failed to create user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMissingRequiredParams'
+components:
+  schemas:
+    UserInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of user.
+          example: John
+            
+    Response:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Initial object created
+        data:
+          type: string
+          example: null
+    ErrorMissingRequiredParams:
+      type: object
+      description: The error message will depend on the missing required body field
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Missing or invalid parameter parameter_name
+        data:
+          type: string
+          example: null
+      
+  parameters:
+      CorrelationId:
+        in: header
+        name: x-correlationid
+        description: corelation id to easier track logs 
+        required: false
+        schema:
+          type: string

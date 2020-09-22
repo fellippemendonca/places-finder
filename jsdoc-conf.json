@@ -1,0 +1,50 @@
+{
+  "source": {
+    "include": ["src", "README.md"],
+    "includePattern": ".+\\.js?$",
+    "excludePattern": "(node_modules/|docs)",
+    "exclude": ["src/middleware", "src/models", "src/utils/"]
+  },
+  "sourceType": false,
+  "plugins": [
+    "plugins/markdown",
+    "jsdoc-mermaid"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": true,
+    "default": {
+      "outputSourceFiles": false
+    }
+  },
+  "opts":{
+    "encoding": "utf8",
+    "readme": "./README.md",
+    "destination": "docs/",
+    "recurse": true,
+    "verbose": true,
+    "template": "./node_modules/clean-jsdoc-theme",
+    "theme_opts":{
+      "title": "Location Service",
+      "filter": true,
+      "create_style": ".details{display:none} h1.page-title::after{background: #14addd} article h1::after{background: #14addd} article h2::after{background: #14addd} section h2::after{background: #14addd}" ,
+      "menu": [
+      {
+        "title": "Location Service API doc",
+        "link": "/v1/swagger",
+        "target": "_blank"
+      },
+      {
+        "title": "Repo",
+        "link": "https://github.com/fellippemendonca/places-finder",
+        "target": "_blank"
+      }
+    ],
+    "meta": [
+      "<meta name=\"author\" content=\"Fellippe\">",
+      "<meta name=\"description\" content=\"Location Service documentation\">"
+    ],
+    "footer": "&copy;" 
+    }
+  }
+}

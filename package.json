@@ -1,0 +1,53 @@
+{
+  "name": "sync-service",
+  "version": "0.0.1",
+  "description": "The service purpose is to act like a glue between different components of the ryd backend ecosystem",
+  "main": "index.js",
+  "scripts": {
+    "dev": "export NODE_ENV=development && node ./index.js",
+    "test": "nyc --reporter=cobertura --report-dir=./  --require @babel/register mocha __tests__/*.js --timeout 20000 --exit",
+    "test:dev": "nyc --reporter=html --report-dir=./html-coverage --require @babel/register mocha __tests__/*.js --timeout 20000 --exit",
+    "docs": "node_modules/.bin/jsdoc --configure ./jsdoc-conf.json",
+    "lint": "./node_modules/eslint/bin/eslint.js --no-inline-config ./index.js ./src",
+    "start": "npm run docs && node ./index.js"
+  },
+  "author": "Thinxnet",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/register": "^7.10.5",
+    "async": "^3.2.0",
+    "body-parser": "^1.19.0",
+    "co": "4.6.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "jsdoc": "^3.6.4",
+    "jsdoc-mermaid": "^1.0.0",
+    "jsforce": "^1.9.3",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "node-uuid": "^1.4.8",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "pino": "^6.2.1",
+    "safe": "^0.4.6",
+    "swagger-ui-express": "^4.1.4",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-date-string": "^0.1.0",
+    "chai-exclude": "^2.0.2",
+    "chai-http": "^4.3.0",
+    "clean-jsdoc-theme": "^2.2.11",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "mocha": "^7.1.1",
+    "mocha-junit-reporter": "^2.0.0",
+    "nyc": "^15.0.1",
+    "sinon": "^9.0.2"
+  }
+}
