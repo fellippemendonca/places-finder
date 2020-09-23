@@ -1,8 +1,10 @@
 const { Router } = require('express');
-const places = require('./places');
+const properties = require('./properties');
+const bookings = require('./bookings');
 
 const router = Router();
 
-router.use('/places', places);
+router.use('/properties', properties);
+router.use('/bookings', bookings);
 
 module.exports = router;

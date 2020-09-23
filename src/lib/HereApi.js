@@ -5,9 +5,9 @@ const host = process.env.HEREAPI_HOST;
 const path = process.env.HEREAPI_PATH;
 const apiKey = process.env.HEREAPI_KEY;
 
-async function getLocation({ latitude, longitude, search }) {
+async function getLocation({ coordinates, search }) {
   const queryObj = {
-    at: `${latitude},${longitude}`,
+    at: coordinates,
     apiKey
   };
   if (search) {
@@ -22,9 +22,8 @@ async function getLocation({ latitude, longitude, search }) {
     });
     return response.data;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
-  return null;
 }
 
 module.exports = { getLocation };

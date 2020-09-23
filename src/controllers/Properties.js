@@ -7,18 +7,18 @@ const HereApi = require('../lib/HereApi');
  * @class
  * @hideconstructor
  */
-class Places {
+class Properties {
   /**
-   * Method to get places
+   * Method to get Properties
    * @param {object} req Express Request Object
    * @param {object} res Express Response Object
    */
-  static async getPlaces(req, res) {
+  static async getProperties(req, res) {
     const correlationId = res.locals.correlationId;
     try {
-      const input = req.params;
-      input.search = req.query.search;
-      const result = await HereApi.getLocation(input);
+      const search = req.query.search;
+      const coordinates = req.query.at;
+      const result = await HereApi.getLocation({ coordinates, search });
       logger.info({ correlationId }, 'Success!!!');
       return apiResponse(res, 200, null, 'success', result);
     } catch (error) {
@@ -32,4 +32,4 @@ class Places {
   }
 }
 
-module.exports = Places;
+module.exports = Properties;

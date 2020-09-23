@@ -16,20 +16,20 @@ const swaggerYamlDocument = YAML.load('./swagger-doc/fullSchema.yaml');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/v1/api', trace, routes);
+app.use('/api', trace, routes);
 
-app.use('/v1/docs/', express.static('./docs'));
+app.use('/docs/', express.static('./docs'));
 
-app.use('/v1/swagger', swaggerUi.serve, swaggerUi.setup(swaggerYamlDocument));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerYamlDocument));
 
-app.get('/v1/docs/', (req, res) => {
+app.get('/docs/', (req, res) => {
   res.sendFile('index.html', {
     root: path.join(__dirname, './docs/')
   });
 });
 
 app.use(['/docs/*', '/'], (req, res) => {
-  res.redirect('/v1/docs/');
+  res.redirect('/docs/');
 });
 
 app.listen(port, () => {
