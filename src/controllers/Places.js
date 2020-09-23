@@ -1,5 +1,7 @@
 const logger = require('../lib/Logger');
 const apiResponse = require('../utils/apiResponse');
+const HereApi = require('../lib/HereApi');
+
 
 /**
  * @class
@@ -14,8 +16,9 @@ class Places {
   static async getPlaces(req, res) {
     const correlationId = res.locals.correlationId;
     try {
-      const result = { params: req.params };
-      
+      const input = req.params;
+      input.search = req.query.search;
+      const result = await HereApi.getLocation(input);
       logger.info({ correlationId }, 'Success!!!');
       return apiResponse(res, 200, null, 'success', result);
     } catch (error) {
